@@ -1,4 +1,5 @@
 import { Controller, Get, Param } from '@nestjs/common';
+import { title } from 'process';
 
 @Controller('books')
 export class BooksController {
@@ -19,4 +20,11 @@ export class BooksController {
         const book = this.books.find((book) => book.id.toLowerCase() === id.toLowerCase());
         return book ? book : 'Livro não localizado na base';
     }
+
+    @Get(':title')
+    getBookByTitle(@Param('title') title: string): any {
+        const book = this.books.find((book) => book.title.toLowerCase() === title.toLowerCase());
+        return book ? book : 'Livro não localizado na base';
+    }
+    //fim do arquivo
 }
